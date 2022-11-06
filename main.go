@@ -16,8 +16,12 @@ func main() {
 		os.Exit(1)
 	}
 
-	g := hangman.New(8, dictionnary.PickWord())
-	
+	g, err := hangman.New(8, dictionnary.PickWord())
+	if err != nil {
+		fmt.Printf("Could not create game: %v\n", err)
+		os.Exit(1)
+	}
+
 	hangman.DrawWelcome()
 
 	guess := ""
