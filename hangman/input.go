@@ -26,3 +26,26 @@ func ReadGuess() (guess string, err error) {
 	}
 	return guess, nil
 }
+
+func AskForPlay() (response bool, err error) {
+	valid := false
+	for !valid {
+		fmt.Println("Do you want to play one more game ? Y for yes or N for no")
+		choice, err := reader.ReadString('\n')
+		if err != nil {
+			return false, err
+		}
+		
+		choice = strings.TrimSpace(choice)
+		choice = strings.ToUpper(choice)
+		
+		if choice == "Y" {
+			response = true
+			valid = true
+		} else if choice == "N" {
+			response = false
+			valid = true
+		}
+	}
+	return response, nil
+}
