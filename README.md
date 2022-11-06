@@ -13,3 +13,4 @@
  ```go
  go build ./main.go
 ```
+![image](https://user-images.githubusercontent.com/91888197/200191254-66d5e57c-0237-4051-8c8b-b040e6df4cd0.png)
