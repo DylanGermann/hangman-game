@@ -4,11 +4,19 @@ import (
 	"fmt"
 	"os"
 
+	"projets.perso/hangman-game/dictionnary"
 	"projets.perso/hangman-game/hangman"
 )
 
 func main() {
-	g := hangman.New(8, "Golang")
+	
+	err := dictionnary.Load("words.txt")
+	if err != nil {
+		fmt.Printf("Could not load dictionnary: %v\n", err)
+		os.Exit(1)
+	}
+
+	g := hangman.New(8, dictionnary.PickWord())
 	
 	hangman.DrawWelcome()
 
