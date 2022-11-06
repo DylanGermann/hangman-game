@@ -1,5 +1,5 @@
-# hangmane-game
- A simple hangmane game in Go
+# hangman-game
+ A simple hangman game in Go
  
  ## How to run the program ?
  1. Make sure to install go 
