@@ -9,7 +9,21 @@ import (
 )
 
 func main() {
+	hangman.DrawWelcome()
+	for {
+		playGame()
+		choice, err := hangman.AskForPlay()
+		if err != nil {
+			fmt.Printf("We got an error : %v", err)
+		}
+		if !choice {
+			os.Exit(1)
+		}
+	}
 	
+}
+
+func playGame() {
 	err := dictionnary.Load("words.txt")
 	if err != nil {
 		fmt.Printf("Could not load dictionnary: %v\n", err)
@@ -22,15 +36,14 @@ func main() {
 		os.Exit(1)
 	}
 
-	hangman.DrawWelcome()
+		
 
 	guess := ""
 	for {
 		hangman.Draw(g, guess)
 
-		switch g.State {
-		case "won", "lost":
-			os.Exit(0)
+		if g.State == "won" || g.State == "lost" {
+			break
 		}
 
 		l, err := hangman.ReadGuess()
@@ -41,6 +54,4 @@ func main() {
 		guess = l
 		g.MakeAGuess(guess)
 	}
-
-	
 }
